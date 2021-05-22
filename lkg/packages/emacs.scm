@@ -118,7 +118,7 @@
 (define-public gccemacs-pgtk-lkg
   (emacs-from-git
    (emacs-with-native-comp emacs-next-pgtk gcc-11 'full-aot)
-   #:pkg-name "gccemacs-pgtk-klg"
+   #:pkg-name "gccemacs-pgtk-lkg"
    #:pkg-version "28.0.50"
    #:pkg-revision "1"
    #:git-repo "https://github.com/GongYiLiao/Emacs_NC_PGTK.git"
