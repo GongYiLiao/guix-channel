@@ -16,7 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (flat packages emacs)
+(define-module (lkg packages emacs)
   #:use-module (guix packages)
   #:use-module (guix memoization)
   #:use-module (guix git-download)
@@ -29,22 +29,23 @@
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages webkit)
   #:use-module (gnu packages xorg)
-  #:use-module (flat packages)
-  #:use-module (flat packages gcc)
+  #:use-module (lkg packages)
+  #:use-module (lkg packages gcc)
   #:use-module (ice-9 regex)
   #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-26))
 
 (define emacs-with-native-comp
   (lambda* (emacs gcc #:optional full-aot)
-    (let ((libgccjit (libgccjit-for-gcc gcc)))
+    (let ((libgccjit libgccjit-11))
       (package
         (inherit emacs)
         (source
          (origin
            (inherit (package-source emacs))
            (patches
-            (append (search-patches "emacs-native-comp-exec-path.patch")
+            (append (search-patches "gccemacs-exec-path.patch"
+				    "gccemacs-face-buffer-local-first.patch")
                     (filter
                      (lambda (f)
                        (not (any (cut string-match <> f)
@@ -114,22 +115,32 @@
       (outputs
        '("out" "debug")))))
 
-(define-public emacs-native-comp
+(define-public gccemacs
   (emacs-from-git
-   (emacs-with-native-comp emacs-next gcc-10 'full-aot)
-   #:pkg-name "emacs-native-comp"
+   (emacs-with-native-comp emacs-next gcc-11 'full-aot)
+   #:pkg-name "gccemacs"
    #:pkg-version "28.0.50"
-   #:pkg-revision "168"
+   #:pkg-revision "1"
    #:git-repo "https://git.savannah.gnu.org/git/emacs.git"
-   #:git-commit "a3de48687eb28121f3dbfc20be19bd06c4cd6e98"
-   #:checksum "0prfhpi8bx2v8g1lvzy5gg0l9jap47byy7i5f6h418kras0dvx6c"))
+   #:git-commit "5fe343a44cdd83c43793c86b92ab5dd16a29bc3a"
+   #:checksum "1yijidpzb2wv2amzl5nb2mfwxvyv03hdb2xcdnszpkqcllfd9s1p"))
 
-(define-public emacs-pgtk-native-comp
+(define-public gccemacs-pgtk
   (emacs-from-git
-   (emacs-with-native-comp emacs-next-pgtk gcc-10 'full-aot)
-   #:pkg-name "emacs-pgtk-native-comp"
+   (emacs-with-native-comp emacs-next-pgtk gcc-11 'full-aot)
+   #:pkg-name "gccemacs-pgtk"
    #:pkg-version "28.0.50"
-   #:pkg-revision "190"
-   #:git-repo "https://github.com/flatwhatson/emacs.git"
-   #:git-commit "5d59c8b201b731c6a595a0fb5452af764087ff66"
-   #:checksum "13gjiz2v44pcb2a5ip6l96lz4q5i5d8l2mvhrb92wivj7ilr47j8"))
+   #:pkg-revision "2"
+   #:git-repo "https://git.savannah.gnu.org/git/emacs.git"
+   #:git-commit "1f82c85bffaaa901dc4626bf47073d1d0fb29d2d"
+   #:checksum "1yl5bbssf0i9a3bgjp7pzg06f9iz2q8z6nf4k6v0fy93zm1p6djg"))
+
+(define-public gccemacs-pgtk-lkg
+  (emacs-from-git
+   (emacs-with-native-comp emacs-next-pgtk gcc-11 'full-aot)
+   #:pkg-name "gccemacs-pgtk-klg"
+   #:pkg-version "28.0.50"
+   #:pkg-revision "1"
+   #:git-repo "https://github.com/GongYiLiao/Emacs_NC_PGTK.git"
+   #:git-commit "fc2ab6eccfc9e89ea6c9f2b3f2b31899d808a25e"
+   #:checksum "178dx07w2j20sxsfwki494y14i5v7ickymip41fd5f2lipgd1kyv"))

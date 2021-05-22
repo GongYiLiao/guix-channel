@@ -1,0 +1,32 @@
+--- src-orig/lisp/faces.el	2021-05-12 12:39:48.333250269 -0500
++++ src/lisp/faces.el	2021-05-19 11:50:52.559200654 -0500
+@@ -428,7 +428,28 @@
+ 	      (cons attr (face-attribute face attr (or frame t)))))
+   	  face-attribute-name-alist))
+ 
+-(defun face-attribute (face attribute &optional frame inherit)
++
++(defun face-attribute (face attribute &optional frame inherit buffer)
++  "Return the value of FACE's ATTRIBUTE on FRAME or current buffer.
++If the optional arguments FRAME and INHERIT are applicable to the
++fallback function face-attribute-frame-local.
++This function tries to extract `face-remapping-alist' from BUFFER,
++if BUFFER is nil, current-buffer is used.
++"
++  ;; get if `face-remapping-alist' exists in buffer and has values
++  (or (let ((buffer-faces (buffer-local-value
++			   'face-remapping-alist
++			   (or (and buffer (get-buffer buffer))
++			       (current-buffer)))))
++	;; get face attribute from `face-remapping-alist'
++	(and buffer-faces
++	     (plist-get (car (alist-get face buffer-faces))
++			attribute)))
++      ;; if no avail, fallback to `face-attribute-frame-local'
++      ;; which is the original `face-attribute'
++      (face-attribute-frame-local face attribute frame inherit)))
++
++(defun face-attribute-frame-local (face attribute &optional frame inherit)
+   "Return the value of FACE's ATTRIBUTE on FRAME.
+ If the optional argument FRAME is given, report on face FACE in that frame.
+ If FRAME is t, report on the defaults for face FACE (for new frames).
