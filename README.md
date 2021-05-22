@@ -1,37 +1,16 @@
-# flat's guix channel
+# A fork from flat's guix channel
 
-This is a personal collection of [GNU Guix][guix] package definitions.  Refer
-to the manual for more information on [Guix Channels][guix-channel].
+This is a fork of [FlatWhatson's channel][flatwhatson-guix]. 
 
 ## Packages
 
-### emacs-native-comp
+### gccemacs-pgtk-lkg
+This package merge with master and pgtk branch with and `face-attribeute` function replaced, 
+the motivation of `gccemacs-face-buffer-local-first.patch` can be found at [emacs-devel-disucssion][emacs-devel-fbl]
 
-Emacs built with support for native compilation of Elisp.
+### libgccjit-11
 
-This package once tracked the `feature/native-comp` branch on savannah, but
-now tracks `master` as the feature was merged for inclusion in Emacs 28.
-
-See [GccEmacs][gccemacs] for more information.
-
-### emacs-pgtk-native-comp
-
-Emacs built with support for native compilation of Elisp and a new "pure" GTK3
-rendering engine, bringing support for Wayland and improved performance on X.
-
-This package tracks an unofficial [pgtk-nativecomp][flatwhatson-pgtk] branch,
-which was once a merge of the `feature/pgtk` and `feature/native-comp`
-branches on savannah.  Since native compilation was merged for inclusion in
-Emacs 28, this branch tracks `feature/pgtk` with slightly more frequent merges
-from `master`.
-
-See [masm11's branch][masm11-pgtk] for more information on PGTK.
-
-### libgccjit-10
-
-An updated `libgccjit` package based on `gcc-10`.  The `libgccjit` package in
-Guix is based on `gcc-9`, which is missing some changes that are important for
-`emacs-native-comp` performance.
+An updated `libgccjit` package based on `gcc-11`. 
 
 ## Usage
 
@@ -41,39 +20,14 @@ The simplest way to use this channel is to temporarily add it to Guix's
 load-path:
 
 ``` shell
-git clone https://github.com/flatwhatson/guix-channel.git
-guix install -L ./guix-channel emacs-native-comp
+git clone https://github.com/GongYiLiao/guix-channel.git
+guix install -L ./guix-channel gccemacs-pgtk-lkg
 ```
 
 ### via channels.scm
 
-A more permanent solution is to configure Guix to use this channel as an
-*additional channel*.  This will extend your package collection with
-definitions from this channel.  Updates will be received (and authenticated)
-with `guix pull`.
+WIP
 
-To use the channel, add it to your configuration in
-`~/.config/guix/channels.scm`:
-
-``` scheme
-(cons* (channel
-        (name 'flat)
-        (url "https://github.com/flatwhatson/guix-channel.git")
-        (introduction
-         (make-channel-introduction
-          "33f86a4b48205c0dc19d7c036c85393f0766f806"
-          (openpgp-fingerprint
-           "736A C00E 1254 378B A982  7AF6 9DBE 8265 81B6 4490"))))
-       %default-channels)
-```
-
-With the channel configured, it can be used as follows:
-
-``` shell
-guix pull
-guix search emacs-native-comp
-guix install emacs-native-comp
-```
 
 ## License
 
@@ -96,3 +50,5 @@ See [COPYING](COPYING) for details.
 [gccemacs]: https://www.emacswiki.org/emacs/GccEmacs
 [masm11-pgtk]: https://github.com/masm11/emacs/tree/pgtk
 [flatwhatson-pgtk]: https://github.com/flatwhatson/emacs/tree/pgtk-nativecomp
+[flatwhatson-guix]: https://github.com/flatwhatson/guix-channel
+[emacs-devel-fbl]: https://mail.gnu.org/archive/html/emacs-devel/2021-03/msg01425.html
