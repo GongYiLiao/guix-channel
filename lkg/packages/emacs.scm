@@ -115,26 +115,6 @@
       (outputs
        '("out" "debug")))))
 
-(define-public gccemacs
-  (emacs-from-git
-   (emacs-with-native-comp emacs-next gcc-11 'full-aot)
-   #:pkg-name "gccemacs"
-   #:pkg-version "28.0.50"
-   #:pkg-revision "1"
-   #:git-repo "https://git.savannah.gnu.org/git/emacs.git"
-   #:git-commit "5fe343a44cdd83c43793c86b92ab5dd16a29bc3a"
-   #:checksum "1yijidpzb2wv2amzl5nb2mfwxvyv03hdb2xcdnszpkqcllfd9s1p"))
-
-(define-public gccemacs-pgtk
-  (emacs-from-git
-   (emacs-with-native-comp emacs-next-pgtk gcc-11 'full-aot)
-   #:pkg-name "gccemacs-pgtk"
-   #:pkg-version "28.0.50"
-   #:pkg-revision "2"
-   #:git-repo "https://git.savannah.gnu.org/git/emacs.git"
-   #:git-commit "1f82c85bffaaa901dc4626bf47073d1d0fb29d2d"
-   #:checksum "1yl5bbssf0i9a3bgjp7pzg06f9iz2q8z6nf4k6v0fy93zm1p6djg"))
-
 (define-public gccemacs-pgtk-lkg
   (emacs-from-git
    (emacs-with-native-comp emacs-next-pgtk gcc-11 'full-aot)
