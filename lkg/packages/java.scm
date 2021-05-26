@@ -90,7 +90,7 @@
                `(begin
                   ;; The m4 macro uses 'help' to search for builtins, which is
                   ;; not available in bash-minimal
-                  (substitute* "make/autoconf/basics.m4"
+                  (substitute* "make/autoconf/basic.m4"
                     (("if help") "if command -v"))
                   (for-each delete-file (find-files "." ".*.(bin|exe|jar)$"))
                   #t))))
@@ -112,7 +112,7 @@
     (native-inputs
      `(("autoconf" ,autoconf)
        ("make@4.2" ,gnu-make-4.2)
-       ("openjdk13:jdk" ,openjdk13 "jdk")
+       ("openjdk14:jdk" ,openjdk14 "jdk")
        ("pkg-config" ,pkg-config)
        ("unzip" ,unzip)
        ("which" ,which)
