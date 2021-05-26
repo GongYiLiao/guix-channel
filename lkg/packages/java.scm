@@ -80,7 +80,7 @@
     (version "15.0")
     (source (origin
               (method url-fetch)
-              (url "https://github.com/openjdk/jdk/archive/refs/tags/jdk-15-ga.tar.gz")
+              (uri "https://github.com/openjdk/jdk/archive/refs/tags/jdk-15-ga.tar.gz")
               (file-name (string-append name "-" version ".tar.gz"))
               (sha256
                (base32
