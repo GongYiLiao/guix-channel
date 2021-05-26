@@ -73,8 +73,6 @@
   #:use-module (ice-9 match))
 
 
-
-
 (define-public openjdk15
   (package
     (inherit openjdk14)
