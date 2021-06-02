@@ -122,5 +122,5 @@
    #:pkg-version "28.0.50"
    #:pkg-revision "6"
    #:git-repo "https://github.com/GongYiLiao/Emacs_NC_PGTK.git"
-   #:git-commit "edb07516f8d90798d586a607ddaab4ebe6663245"
-   #:checksum "1szxhzcw12id8n1ys6hz26xnp476j1677l2qqcmc72zcm6m63wxj"))
+   #:git-commit "295e4121b7d2fc93238af15ae070ab9324f4409e"
+   #:checksum "003ynb2709bl7p9saq6sgj1lwxl8n10g15bbnsk1l0lahy21b1wn"))
