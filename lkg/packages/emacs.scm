@@ -120,7 +120,7 @@
    (emacs-with-native-comp emacs-next-pgtk gcc-11 'full-aot)
    #:pkg-name "gccemacs-pgtk-lkg"
    #:pkg-version "28.0.50"
-   #:pkg-revision "11"
+   #:pkg-revision "12"
    #:git-repo "https://github.com/GongYiLiao/Emacs_NC_PGTK.git"
-   #:git-commit "fa3e34ea1961d426a6c2e0aa4fdd5af0e9db6427"
-   #:checksum "0jw6j6cin5wbqgcvwc0yj1nn9j85z4y0gjyixak5jamk4c3hvkiw"))
+   #:git-commit "2b1e63ab55bf236ad0957c239d78512fa2560ce3"
+   #:checksum "0jx9w86x7jpgsjpk55asijmrql35snj3ixni2jjhpkk56cwlydgp"))
