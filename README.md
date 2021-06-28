@@ -5,7 +5,7 @@ This is a fork of [FlatWhatson's channel][flatwhatson-guix].
 ## Packages
 
 ### gccemacs-pgtk-lkg
-This package merge with master and pgtk branch with and `face-attribeute` function replaced, 
+This package merge with master and pgtk branch with `face-attribeute` function replaced, 
 the motivation of `gccemacs-face-buffer-local-first.patch` can be found at [emacs-devel-disucssion][emacs-devel-fbl]
 
 ### libgccjit-11
